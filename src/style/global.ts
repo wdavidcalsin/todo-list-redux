@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+    
+
     *{
         margin: 0;
         padding: 0;
@@ -11,6 +13,7 @@ export default createGlobalStyle`
         background-color: ${(props) => props.theme.colors.background};
         font-size: 14px;
         color: ${(props) => props.theme.colors.text};
-        font-family: sans-serif;
+        /* font-family: sans-serif; */
+        font-family: 'Inter', sans-serif;
     }
 `;
