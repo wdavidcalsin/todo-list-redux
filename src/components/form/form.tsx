@@ -1,14 +1,15 @@
 import * as React from 'react';
+import { Form } from 'react-final-form';
 
-import { FormStyle, Input, Button } from './styles';
+import { FormStyle, Button, FieldStyle } from './styles';
 
-const Form = () => {
+const FormComponent = () => {
   return (
-    <FormStyle action="">
-      <Input type="text" placeholder="Duerme y despierta temprano" />
+    <FormStyle>
+      <FieldStyle type="text" placeholder="Duerme y despierta temprano" />
       <Button type="submit">Add </Button>
     </FormStyle>
   );
 };
 
-export default Form;
+export default FormComponent;
