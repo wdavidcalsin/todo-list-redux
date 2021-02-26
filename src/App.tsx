@@ -8,7 +8,7 @@ import light from './style/themes/light';
 import GlobalStyle from './style/global';
 
 import Header from './components/header/header';
-import Form from './components/form/form';
+import FormComponent from './components/form/form';
 
 function App() {
   const [theme, setTheme] = usePeristedState<DefaultTheme>('theme', light);
@@ -22,7 +22,7 @@ function App() {
       <GlobalStyle />
       <div className="container-small">
         <Header toggleTheme={toggleTheme} />
-        <Form />
+        <FormComponent />
       </div>
     </ThemeProvider>
   );
