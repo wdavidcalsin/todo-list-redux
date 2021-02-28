@@ -1,14 +1,29 @@
 import * as React from 'react';
-import { Form } from 'react-final-form';
+import { Form, Field } from 'react-final-form';
 
-import { FormStyle, Button, FieldStyle } from './styles';
+import { FormStyle, Button } from './styles';
 
 const FormComponent = () => {
+  const onSubmit = (values: any) => {
+    console.log(values);
+  };
+
   return (
-    <FormStyle>
-      <FieldStyle type="text" placeholder="Duerme y despierta temprano" />
-      <Button type="submit">Add </Button>
-    </FormStyle>
+    <Form onSubmit={onSubmit}>
+      {(formProps) => {
+        return (
+          <FormStyle onSubmit={formProps.handleSubmit}>
+            <Field
+              component="input"
+              name="value"
+              type="text"
+              placeholder="Duerme y despierta temprano"
+            />
+            <Button type="submit">Add </Button>
+          </FormStyle>
+        );
+      }}
+    </Form>
   );
 };
 
