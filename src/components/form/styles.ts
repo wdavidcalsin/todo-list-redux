@@ -5,7 +5,9 @@ import { FormEvent } from 'react';
 
 export const FormStyle = styled.form`
   display: flex;
+  align-items: center;
   padding: 20px 0;
+  height: 70px;
 
   input {
     width: 100%;
@@ -17,7 +19,7 @@ export const FormStyle = styled.form`
     border-radius: 2px;
     color: ${(props) => props.theme.colors.text};
     background: ${(props) => props.theme.colors.third};
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 
     font-family: 'Inter', sans-serif;
 
@@ -42,8 +44,11 @@ export const Button = styled.button`
   overflow: hidden;
   border-radius: 2px;
   color: ${(props) => props.theme.colors.text};
+  height: 100%;
   border: 1px dashed ${(props) => props.theme.colors.inversColor};
   z-index: 1;
+  /* padding: 10px 10px; */
+  display: block;
 
   &:before {
     transition: all 5s;
