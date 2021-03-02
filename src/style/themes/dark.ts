@@ -10,5 +10,6 @@ export default {
 
     background: '#324f72',
     text: '#fff',
+    textSecundary: '#a0bfc4',
   },
 };

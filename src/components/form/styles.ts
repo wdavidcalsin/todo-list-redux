@@ -24,7 +24,7 @@ export const FormStyle = styled.form`
     font-family: 'Inter', sans-serif;
 
     &::placeholder {
-      color: ${(props) => props.theme.colors.text};
+      color: ${(props) => props.theme.colors.textSecundary};
     }
 
     &:focus {
