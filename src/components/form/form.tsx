@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { Form, Field } from 'react-final-form';
+import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import { FormStyle, Button } from './styles';
 
 const FormComponent = () => {
+  const data = useSelector((state: any) => state.add);
+
   const required = (value: any) => (value ? undefined : 'Required');
 
   const onSubmit = (values: any) => {
@@ -28,10 +31,8 @@ const FormComponent = () => {
               </>
             )}
           </Field>
-
-          <Button type="submit" disabled={submitting || pristine}>
-            Add
-          </Button>
+          {/* disabled={submitting || pristine} */}
+          <Button type="submit">Add</Button>
         </FormStyle>
       )}
     />

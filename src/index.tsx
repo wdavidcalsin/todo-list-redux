@@ -8,14 +8,14 @@ import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import { store } from './store/index';
+import { store } from './store/store';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
       <App />
-    </React.StrictMode>
-  </Provider>,
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root'),
 );
 
