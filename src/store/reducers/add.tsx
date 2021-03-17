@@ -1,9 +1,9 @@
 import { ADD } from '../constants/index';
 
-export const addReducers = (state = [''], action: any) => {
+export const addReducers = (state = [], action: any) => {
   switch (action.type) {
     case ADD:
-      return [...state];
+      return [...state, action.payload];
 
     default:
       return state;
