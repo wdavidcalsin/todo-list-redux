@@ -1,5 +1,5 @@
 import { ADD } from '../store/constants/index';
 
-export const actionsAdd = {
-  type: ADD,
+export const actionsAdd = () => {
+  return { type: ADD };
 };
