@@ -6,11 +6,6 @@ import { addAction, deleteAction } from '../../actions/add.action';
 
 import { FormStyle, Button } from './styles';
 
-interface IValue {
-  id: string;
-  value: string;
-}
-
 const FormComponent = () => {
   const listData = useSelector((state: any) => state.add);
   const dispatch = useDispatch();
