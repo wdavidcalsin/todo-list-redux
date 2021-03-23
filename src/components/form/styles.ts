@@ -3,6 +3,36 @@ import styled from 'styled-components';
 import { Field, Form, FormProps, FormRenderProps } from 'react-final-form';
 import { FormEvent } from 'react';
 
+export const DivList = styled.form`
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  height: 70px;
+
+  input {
+    width: 100%;
+    margin-right: 10px;
+    padding: 10px 10px;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    border-radius: 2px;
+    color: ${(props) => props.theme.colors.text};
+    background: ${(props) => props.theme.colors.third};
+    /* text-transform: uppercase; */
+
+    font-family: 'Inter', sans-serif;
+
+    &::placeholder {
+      color: ${(props) => props.theme.colors.textSecundary};
+    }
+
+    &:focus {
+      box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.05);
+    }
+  }
+`;
+
 export const FormStyle = styled.form`
   display: flex;
   align-items: center;

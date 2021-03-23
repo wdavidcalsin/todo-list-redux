@@ -1,4 +1,4 @@
-import { ADD, DELETE } from '../constants/index';
+import { ADD, DELETE, UPDATE } from '../constants/index';
 
 const initState: any = [];
 
@@ -9,7 +9,10 @@ export const addReducers = (state = initState, action: any) => {
 
     case DELETE:
       let value = state.filter((val: any) => val.id !== action.payload);
-      return [value];
+      return [...value];
+
+    case UPDATE:
+      return state;
 
     default:
       return state;
