@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addAction } from '../../actions/add.action';
+import { addAction, deleteAction } from '../../actions/add.action';
 
-import { FormStyle, Button } from './styles';
+import { FormStyle, Button, DivList } from './styles';
 
 interface IValue {
   id: string;
@@ -13,19 +12,16 @@ interface IValue {
 }
 
 const FormComponent = () => {
-  const [valueInput, setValueInput] = useState<IValue>({} as IValue);
-
-  const todos = useSelector((state: any) => state.add);
+  const listData = useSelector((state: any) => state.add);
   const dispatch = useDispatch();
 
   const required = (value: any) => (value ? undefined : 'Required');
 
   const onSubmit = (values: any) => {
     const { value } = values;
-    const endValue = { id: uuidv4(), value };
+    dispatch(addAction({ value: value, id: uuidv4() }));
 
-    setValueInput(endValue);
-    console.log(valueInput);
+    console.log(value);
 
     // if (Object.entries(valueInput).length !== 0) {
     //   dispatch(addAction(valueInput));
@@ -37,12 +33,52 @@ const FormComponent = () => {
     // setValueInput({ value: '', id: '' });
   };
 
+  const handleRemove = (id: any) => {
+    dispatch(deleteAction(id));
+  };
+
+  const handleUpdate = (value: any, id: any) => {
+    console.log(value, id);
+  };
+
   return (
     <>
+      {listData.map((val: any, key: any) => (
+        <Form
+          key={key}
+          onSubmit={(value) => {
+            handleUpdate(value, val.id);
+          }}
+          render={({ handleSubmit }) => (
+            <FormStyle onSubmit={handleSubmit} key={key}>
+              <Field
+                name="valueUpdate"
+                component="input"
+                defaultValue={val.value}
+              ></Field>
+              <Button type="submit">Update</Button>
+              <Button
+                type="button"
+                onClick={() => {
+                  handleRemove(val.id);
+                }}
+              >
+                Remove
+              </Button>
+            </FormStyle>
+          )}
+        />
+      ))}
+
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting, pristine }) => (
-          <FormStyle onSubmit={handleSubmit}>
+        render={({ handleSubmit, form }) => (
+          <FormStyle
+            onSubmit={async (event) => {
+              handleSubmit(event);
+              form.reset();
+            }}
+          >
             <Field name="value" validate={required}>
               {({ input, meta }) => (
                 <>
@@ -50,7 +86,6 @@ const FormComponent = () => {
                     {...input}
                     type="text"
                     placeholder="Duerme y despierta temprano"
-                    // value={valueInput.value || ''}
                   />
                   {meta.error && meta.touched && (
                     <span style={{ color: 'red' }}>{meta.error}</span>
@@ -63,11 +98,6 @@ const FormComponent = () => {
           </FormStyle>
         )}
       />
-      <ul>
-        {todos.map((val: any, key: any) => (
-          <li key={key}>{val.value}</li>
-        ))}
-      </ul>
     </>
   );
 };
