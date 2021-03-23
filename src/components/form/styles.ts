@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-import { Field, Form, FormProps, FormRenderProps } from 'react-final-form';
-import { FormEvent } from 'react';
-
 export const DivList = styled.form`
   display: flex;
   align-items: center;

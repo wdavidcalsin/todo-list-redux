@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addAction, deleteAction } from '../../actions/add.action';
 
-import { FormStyle, Button, DivList } from './styles';
+import { FormStyle, Button } from './styles';
 
 interface IValue {
   id: string;
