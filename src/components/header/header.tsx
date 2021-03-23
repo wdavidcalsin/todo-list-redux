@@ -10,12 +10,12 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ toggleTheme }) => {
-  const { colors, title } = React.useContext(ThemeContext);
+  const { title } = React.useContext(ThemeContext);
 
   return (
     <HeaderStyle>
       <Button onClick={toggleTheme} type="button">
-        {title == 'light' ? <BsSun /> : <BsMoon />}
+        {title === 'light' ? <BsSun /> : <BsMoon />}
       </Button>
       <Button type="button" className="load">
         Load

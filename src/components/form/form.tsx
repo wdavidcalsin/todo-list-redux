@@ -4,12 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addAction, deleteAction } from '../../actions/add.action';
 
-import { FormStyle, Button, DivList } from './styles';
-
-interface IValue {
-  id: string;
-  value: string;
-}
+import { FormStyle, Button } from './styles';
 
 const FormComponent = () => {
   const listData = useSelector((state: any) => state.add);

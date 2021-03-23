@@ -1,4 +1,4 @@
-export default {
+const themeDark = {
   title: 'dark',
 
   colors: {
@@ -13,3 +13,5 @@ export default {
     textSecundary: '#a0bfc4',
   },
 };
+
+export default themeDark;
