@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Form, Field } from 'react-final-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addAction, deleteAction } from '../../actions/add.action';
+import { addAction, deleteAction, updateAction } from '../../actions/add.action';
 
 import { FormStyle, Button } from './styles';
 
@@ -17,23 +17,15 @@ const FormComponent = () => {
     dispatch(addAction({ value: value, id: uuidv4() }));
 
     console.log(value);
-
-    // if (Object.entries(valueInput).length !== 0) {
-    //   dispatch(addAction(valueInput));
-
-    //   dispatch(addAction(valueInput));
-
-    // }
-
-    // setValueInput({ value: '', id: '' });
   };
 
   const handleRemove = (id: any) => {
     dispatch(deleteAction(id));
   };
 
-  const handleUpdate = (value: any, id: any) => {
-    console.log(value, id);
+  const handleUpdate = (values: any, id: any) => {
+    const { valueUpdate } = values;
+    dispatch(updateAction(id, valueUpdate));
   };
 
   return (
@@ -41,8 +33,8 @@ const FormComponent = () => {
       {listData.map((val: any, key: any) => (
         <Form
           key={key}
-          onSubmit={(value) => {
-            handleUpdate(value, val.id);
+          onSubmit={(values) => {
+            handleUpdate(values, val.id);
           }}
           render={({ handleSubmit }) => (
             <FormStyle onSubmit={handleSubmit} key={key}>
