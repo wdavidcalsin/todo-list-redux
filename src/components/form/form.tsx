@@ -1,4 +1,3 @@
-import { check } from 'prettier';
 import * as React from 'react';
 import { Form, Field } from 'react-final-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -53,7 +52,7 @@ const FormComponent = () => {
   return (
     <>
       {listData.map((val: any, key: any) => {
-        if (val.check != true) {
+        if (val.check !== true) {
           return (
             <Form
               key={key}
@@ -90,6 +89,8 @@ const FormComponent = () => {
             />
           );
         }
+
+        return undefined;
       })}
 
       <Form
