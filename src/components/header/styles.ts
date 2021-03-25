@@ -51,31 +51,21 @@ export const ButtonContent = styled.div`
   background: ${(props) => props.theme.colors.secundary};
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.05);
 
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
 
   overflow: hidden;
 
-  &.load {
-    font-size: 1.5em;
-    text-transform: uppercase;
-    font-weight: 200;
-    color: ${(props) => props.theme.colors.text};
-  }
-
-  & > svg {
-    font-size: 40px;
-    color: ${(props) => props.theme.colors.iconsColor};
-  }
-
-  button {
+  a {
+    text-align: center;
+    text-decoration: none;
     cursor: pointer;
-    font-size: 1.5em;
-    outline: none;
-    border: none;
-    background: none;
+    font-size: 1.4em;
+    font-weight: 500;
+    text-transform: uppercase;
     width: 50%;
-    height: 100%;
+
+    /* vertical-align: middle; */
 
     color: ${(props) => props.theme.colors.text};
 

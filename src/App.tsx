@@ -7,8 +7,7 @@ import light from './style/themes/light';
 
 import GlobalStyle from './style/global';
 
-import Header from './components/header/header';
-import FormComponent from './components/form/form';
+import IndexRouter from './router/router';
 
 function App() {
   const [theme, setTheme] = usePeristedState<DefaultTheme>('theme', light);
@@ -20,10 +19,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <div className="container-small">
-        <Header toggleTheme={toggleTheme} />
-        <FormComponent />
-      </div>
+      <IndexRouter toggleTheme={toggleTheme} />
     </ThemeProvider>
   );
 }
