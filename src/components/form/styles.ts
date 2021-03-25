@@ -36,6 +36,11 @@ export const FormStyle = styled.form`
   padding: 20px 0;
   height: 70px;
 
+  .input-check {
+    width: 20px;
+    cursor: pointer;
+  }
+
   input {
     width: 100%;
     margin-right: 10px;
