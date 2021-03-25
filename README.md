@@ -4,6 +4,11 @@
    or
 2. npm i
 
+# BUILD
+
+1. npm run build
+2. serve -s build
+
 ## COLORS
 
 ### LIGHT

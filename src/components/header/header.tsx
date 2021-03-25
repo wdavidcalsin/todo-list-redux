@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { BsSun, BsMoon } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 
 import { HeaderStyle, Button, ButtonContent } from './styles';
@@ -18,12 +19,12 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
         {title === 'light' ? <BsSun /> : <BsMoon />}
       </Button>
       <ButtonContent>
-        <button type="button" className="home">
+        <Link to="/" className="home">
           Home
-        </button>
-        <button type="button" className="load">
+        </Link>
+        <Link to="/load" className="load">
           Load
-        </button>
+        </Link>
       </ButtonContent>
     </HeaderStyle>
   );
