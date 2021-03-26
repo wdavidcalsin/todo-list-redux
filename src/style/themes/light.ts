@@ -7,6 +7,7 @@ const themeLight = {
     third: '#ffffff',
     inversColor: 'none',
     iconsColor: 'yellow',
+    borderColor: '#333',
 
     background: '#f5f5f5',
     text: '#333',

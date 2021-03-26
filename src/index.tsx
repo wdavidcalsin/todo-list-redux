@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import 'bootstrap-container';
+import 'react-toastify/dist/ReactToastify.css';
+
 import App from './App';
 
 import './index.css';

@@ -7,6 +7,7 @@ const themeDark = {
     third: '#3c5e88',
     inversColor: '#fff',
     iconsColor: 'blue',
+    borderColor: '#fff',
 
     background: '#324f72',
     text: '#fff',
