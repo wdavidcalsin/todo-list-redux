@@ -10,6 +10,7 @@ declare module 'styled-components' {
       third: string;
       inversColor: string;
       iconsColor: string;
+      borderColor: string;
 
       background: string;
       text: string;

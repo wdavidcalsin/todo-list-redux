@@ -1,6 +1,8 @@
 import React from 'react';
 import { Field, Form } from 'react-final-form';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+
 import { deleteAction, updateAction, updateCheckAction } from '../../actions/add.action';
 import { Button, FormStyle } from '../form/styles';
 
@@ -9,25 +11,31 @@ const ListForm = ({ val, defaultCheck }: any) => {
 
   const handleRemove = (id: any) => {
     dispatch(deleteAction(id));
+    toast.warn('Eliminado de la Lista');
   };
 
   const handleUpdate = (values: any, id: any) => {
     const { valueUpdate, checkList } = values;
     const check = checkList === 'true';
 
+    toast.success('Se actualizo la Lista', { autoClose: 3000 });
     dispatch(updateAction(id, valueUpdate, check));
   };
 
   const handleCheckbox = (v: any, id: string) => {
     if (v) {
       console.log(v);
-      setTimeout(() => dispatch(updateCheckAction(id, true)), 2000);
+
+      toast('Lista Seleccionada', { autoClose: 2000 });
+      setTimeout(() => dispatch(updateCheckAction(id, true)), 1000);
 
       return 'true';
     }
 
     console.log(v);
-    setTimeout(() => dispatch(updateCheckAction(id, false)), 2000);
+
+    toast.info('Lista Deseleccionada', { autoClose: 2000 });
+    setTimeout(() => dispatch(updateCheckAction(id, false)), 1000);
 
     return 'false';
   };
