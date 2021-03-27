@@ -9,6 +9,9 @@ import { FormStyle, Button } from './styles';
 
 const FormComponent = () => {
   const listData = useSelector((state: any) => state.add);
+
+  console.log({ listData });
+
   const dispatch = useDispatch();
 
   const required = (value: any) => (value ? undefined : 'Required');
@@ -22,9 +25,9 @@ const FormComponent = () => {
 
   return (
     <>
-      {listData.map((val: any, key: any) => {
-        if (val.check !== true) {
-          return <ListForm val={val} key={key} defaultCheck="false" />;
+      {listData.map((listItem: any, key: any) => {
+        if (listItem.check !== true) {
+          return <ListForm val={listItem} key={key} defaultCheck="false" />;
         }
 
         return undefined;

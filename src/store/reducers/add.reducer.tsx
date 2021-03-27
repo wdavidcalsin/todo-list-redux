@@ -1,8 +1,8 @@
 import { ADD, DELETE, UPDATE, UPDATECHECK } from '../constants/index';
 
 interface IInitState {
-  value: string;
   id: string;
+  value: string;
   check: boolean;
 }
 
