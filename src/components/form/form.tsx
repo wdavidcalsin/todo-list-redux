@@ -25,13 +25,16 @@ const FormComponent = () => {
 
   return (
     <>
-      {listData.map((listItem: any, key: any) => {
-        if (listItem.check !== true) {
-          return <ListForm val={listItem} key={key} defaultCheck="false" />;
-        }
-
-        return undefined;
-      })}
+      {listData
+        .filter((item: any) => !item.check)
+        .map((listItem: any, key: any) => {
+          return (
+            <>
+              {JSON.stringify(listItem)}
+              <ListForm val={listItem} key={key} defaultCheck="false" />
+            </>
+          );
+        })}
 
       <Form
         onSubmit={onSubmit}
