@@ -11,10 +11,10 @@ const Load = ({ toggleTheme }: any) => {
   return (
     <Layout toggleTheme={toggleTheme}>
       <>
-        {listData.map((val: any, key: any) => {
-          if (val.check === true) {
+        {listData.map((itemData: any, key: any) => {
+          if (itemData.check === true) {
             countCheck++;
-            return <ListForm val={val} key={key} defaultCheck="true" />;
+            return <ListForm data={itemData} key={key} defaultCheck="true" />;
           }
           return undefined;
         })}
