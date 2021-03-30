@@ -2,7 +2,7 @@ import { ADD, DELETE, UPDATE, UPDATECHECK } from '../constants/index';
 
 interface IInitState {
   id: string;
-  value: string;
+  name: string;
   check: boolean;
 }
 
@@ -23,7 +23,7 @@ export const addReducers = (state = initState, action: any) => {
 
       newTodos[indexElement] = {
         ...newTodos[indexElement],
-        value: action.body,
+        name: action.body,
         check: action.check,
       };
       state = newTodos;
