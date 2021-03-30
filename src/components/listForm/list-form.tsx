@@ -6,7 +6,14 @@ import { toast } from 'react-toastify';
 import { deleteAction, updateAction, updateCheckAction } from '../../actions/add.action';
 import { Button, FormStyle } from '../form/styles';
 
-const ListForm = ({ val, defaultCheck }: any) => {
+type ListProps = {
+  data: any;
+  defaultCheck: string;
+};
+
+const ListForm = (props: ListProps) => {
+  const { data, defaultCheck } = props;
+
   const dispatch = useDispatch();
 
   const handleRemove = (id: any) => {
@@ -43,7 +50,7 @@ const ListForm = ({ val, defaultCheck }: any) => {
   return (
     <Form
       onSubmit={(values) => {
-        handleUpdate(values, val.id);
+        handleUpdate(values, data.id);
       }}
       render={({ handleSubmit }) => (
         <FormStyle onSubmit={handleSubmit}>
@@ -54,14 +61,14 @@ const ListForm = ({ val, defaultCheck }: any) => {
             defaultValue={defaultCheck}
             className="input-check"
             format={(v) => v === 'true'}
-            parse={(v) => handleCheckbox(v, val.id)}
+            parse={(v) => handleCheckbox(v, data.id)}
           />
-          <Field name="valueUpdate" component="input" defaultValue={val.value}></Field>
+          <Field name="valueUpdate" component="input" defaultValue={data.value}></Field>
           <Button type="submit">Update</Button>
           <Button
             type="button"
             onClick={() => {
-              handleRemove(val.id);
+              handleRemove(data.id);
             }}
           >
             Remove
