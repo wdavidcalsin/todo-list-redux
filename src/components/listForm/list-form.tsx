@@ -6,12 +6,6 @@ import { toast } from 'react-toastify';
 import { deleteAction, updateAction, updateCheckAction } from '../../actions/add.action';
 import { Button, FormStyle } from '../form/styles';
 
-interface IPropValue {
-  value: string;
-  id: string;
-  check: boolean;
-}
-
 const ListForm = ({ valItem }: any) => {
   const dispatch = useDispatch();
 
