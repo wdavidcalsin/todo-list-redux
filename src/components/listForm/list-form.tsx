@@ -6,9 +6,7 @@ import { toast } from 'react-toastify';
 import { deleteAction, updateAction, updateCheckAction } from '../../actions/add.action';
 import { Button, FormStyle } from '../form/styles';
 
-
 const ListForm = ({ valItem }: any) => {
-
   const dispatch = useDispatch();
 
   const handleRemove = (id: any) => {
@@ -28,60 +26,49 @@ const ListForm = ({ valItem }: any) => {
 
   const handleCheckbox = (v: any, id: string) => {
     if (v) {
+      console.log(v, id);
+
       toast('Lista Seleccionada', { autoClose: 2000 });
       setTimeout(() => dispatch(updateCheckAction(id, true)), 1000);
+    } else {
+      console.log(v, id);
 
-      return 'true';
+      toast.info('Lista Deseleccionada', { autoClose: 2000 });
+      setTimeout(() => dispatch(updateCheckAction(id, false)), 1000);
     }
-
-    toast.info('Lista Deseleccionada', { autoClose: 2000 });
-    setTimeout(() => dispatch(updateCheckAction(id, false)), 1000);
-
-    return 'false';
   };
 
   return (
     <Formik
       initialValues={{
         checkList: valItem.check,
-        valueUpdate: '',
+        valueUpdate: valItem.value,
       }}
       onSubmit={(values) => {
-
         handleUpdate(values, valItem.id);
-
       }}
     >
       {({ handleSubmit, values }) => (
         <FormStyle onSubmit={handleSubmit}>
           <Field name="checkList">
             {({ field }: FieldProps) => (
-              <label>
-                <input
-                  {...field}
-                  type="checkbox"
-                  className="input-check"
-                  onClick={() => handleCheckbox(values.checkList, valItem.id)}
-                />
-              </label>
+              <input
+                {...field}
+                type="checkbox"
+                className="input-check"
+                onClick={() => handleCheckbox(!values.checkList, valItem.id)}
+              />
             )}
           </Field>
-
-          <Field
-            name="valueUpdate"
-            component="input"
-
-            defaultValue={valItem.value}
-          ></Field>
-
+          <Field name="valueUpdate">
+            {({ field }: FieldProps) => <input {...field} type="text" />}
+          </Field>
 
           <Button type="submit">Update</Button>
           <Button
             type="button"
             onClick={() => {
-
               handleRemove(valItem.id);
-
             }}
           >
             Remove
