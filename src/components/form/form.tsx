@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Form, Field } from 'react-final-form';
-import arrayMutators from 'final-form-arrays';
-import { FieldArray } from 'react-final-form-arrays';
+
+// import { Form, Field } from 'react-final-form';
+import { Formik, Field } from 'formik';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -40,36 +41,46 @@ const AddField = (props: any) => {
   );
 };
 
+import * as Yup from 'yup';
+
+const ValueSchema = Yup.object().shape({
+  value: Yup.string().min(2, 'Too Short!').max(100, 'Too Long!').required('Required'),
+});
+
+interface MyFormValues {
+  value: string;
+}
+
+interface IPropValue {
+  value: string;
+  id: string;
+  check: boolean;
+}
+
 const FormComponent = () => {
   const listData = useSelector((state: any) => state.add);
 
   const dispatch = useDispatch();
 
-  const handleCheckbox = (v: any, id: string) => {
-    if (v) {
-      toast('Lista Seleccionada', { autoClose: 2000 });
-      setTimeout(() => dispatch(updateCheckAction(id, true)), 1000);
 
-      return 'true';
-    }
+  const initialValues: MyFormValues = { value: '' };
 
-    toast.info('Lista Deseleccionada', { autoClose: 2000 });
-    setTimeout(() => dispatch(updateCheckAction(id, false)), 1000);
+  const onSubmit = (values: any, action: any) => {
+    const { value } = values;
+    dispatch(addAction({ value: value, id: uuidv4(), check: false }));
 
-    return 'false';
+    action.resetForm();
+
   };
 
   return (
     <>
-      <Form
-        onSubmit={() => {}}
-        mutators={{ ...arrayMutators }}
-        initialValues={{
-          tasks: listData,
-        }}
-      >
-        {(formProps) => {
-          const { handleSubmit } = formProps;
+
+      {listData.map((valItem: IPropValue, key: any) => {
+        if (!valItem.check) {
+          return <ListForm valItem={valItem} key={key} />;
+        }
+
 
           return (
             <form autoComplete="off" onSubmit={handleSubmit}>
@@ -117,18 +128,53 @@ const FormComponent = () => {
                         ),
                     )}
 
-                    <AddField
-                      onPush={(value: string) => {
-                        dispatch(addAction({ id: uuidv4(), name: value, check: false }));
-                      }}
-                    />
-                  </div>
-                )}
-              </FieldArray>
-            </form>
-          );
-        }}
-      </Form>
+
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(value, action) => onSubmit(value, action)}
+        validationSchema={ValueSchema}
+        render={({ handleSubmit, errors, touched }) => (
+          <FormStyle onSubmit={handleSubmit}>
+            <Field name="value" placeholder="Duerme y despierta temprano" />
+
+            {errors.value && touched.value ? (
+              <div style={{ color: 'red' }}>{errors.value}</div>
+            ) : null}
+
+            <Button type="submit">Add</Button>
+          </FormStyle>
+        )}
+      />
+
+      {/* <Formik
+        onSubmit={onSubmit}
+        initialValues={initialValues}
+        render={({ handleSubmit, form }) => (
+          <FormStyle
+            onSubmit={async (event) => {
+              handleSubmit(event);
+              form.reset();
+            }}
+          >
+            <Field name="value" validate={required}>
+              {({ input, meta }) => (
+                <>
+                  <input
+                    {...input}
+                    type="text"
+                    placeholder="Duerme y despierta temprano"
+                  />
+                  {meta.error && meta.touched && (
+                    <span style={{ color: 'red' }}>{meta.error}</span>
+                  )}
+                </>
+              )}
+            </Field>
+            <Button type="submit">Add</Button>
+          </FormStyle>
+        )}
+      /> */}
+
     </>
   );
 };

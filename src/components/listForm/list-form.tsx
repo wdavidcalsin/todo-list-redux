@@ -1,18 +1,13 @@
 import React from 'react';
-import { Field, Form } from 'react-final-form';
+import { Formik, Field, FieldProps } from 'formik';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { deleteAction, updateAction, updateCheckAction } from '../../actions/add.action';
 import { Button, FormStyle } from '../form/styles';
 
-type ListProps = {
-  data: any;
-  defaultCheck: string;
-};
 
-const ListForm = (props: ListProps) => {
-  const { data, defaultCheck } = props;
+const ListForm = ({ valItem }: any) => {
 
   const dispatch = useDispatch();
 
@@ -22,6 +17,8 @@ const ListForm = (props: ListProps) => {
   };
 
   const handleUpdate = (values: any, id: any) => {
+    console.log(values);
+
     const { valueUpdate, checkList } = values;
     const check = checkList === 'true';
 
@@ -31,15 +28,11 @@ const ListForm = (props: ListProps) => {
 
   const handleCheckbox = (v: any, id: string) => {
     if (v) {
-      console.log(v);
-
       toast('Lista Seleccionada', { autoClose: 2000 });
       setTimeout(() => dispatch(updateCheckAction(id, true)), 1000);
 
       return 'true';
     }
-
-    console.log(v);
 
     toast.info('Lista Deseleccionada', { autoClose: 2000 });
     setTimeout(() => dispatch(updateCheckAction(id, false)), 1000);
@@ -48,34 +41,54 @@ const ListForm = (props: ListProps) => {
   };
 
   return (
-    <Form
-      onSubmit={(values) => {
-        handleUpdate(values, data.id);
+    <Formik
+      initialValues={{
+        checkList: valItem.check,
+        valueUpdate: '',
       }}
-      render={({ handleSubmit }) => (
+      onSubmit={(values) => {
+
+        handleUpdate(values, valItem.id);
+
+      }}
+    >
+      {({ handleSubmit, values }) => (
         <FormStyle onSubmit={handleSubmit}>
+          <Field name="checkList">
+            {({ field }: FieldProps) => (
+              <label>
+                <input
+                  {...field}
+                  type="checkbox"
+                  className="input-check"
+                  onClick={() => handleCheckbox(values.checkList, valItem.id)}
+                />
+              </label>
+            )}
+          </Field>
+
           <Field
-            name="checkList"
+            name="valueUpdate"
             component="input"
-            type="checkbox"
-            defaultValue={defaultCheck}
-            className="input-check"
-            format={(v) => v === 'true'}
-            parse={(v) => handleCheckbox(v, data.id)}
-          />
-          <Field name="valueUpdate" component="input" defaultValue={data.value}></Field>
+
+            defaultValue={valItem.value}
+          ></Field>
+
+
           <Button type="submit">Update</Button>
           <Button
             type="button"
             onClick={() => {
-              handleRemove(data.id);
+
+              handleRemove(valItem.id);
+
             }}
           >
             Remove
           </Button>
         </FormStyle>
       )}
-    />
+    </Formik>
   );
 };
 
