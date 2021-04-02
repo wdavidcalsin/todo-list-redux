@@ -30,7 +30,7 @@ export const DivList = styled.form`
   }
 `;
 
-export const FormStyle = styled.div`
+export const FormStyle = styled.form`
   display: flex;
   align-items: center;
   padding: 20px 0;
