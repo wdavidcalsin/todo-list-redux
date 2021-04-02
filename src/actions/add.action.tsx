@@ -1,6 +1,7 @@
 import { ADD, DELETE, UPDATE, UPDATECHECK } from '../store/constants/index';
 
 export const addAction = (todo: any) => {
+  // console.log(todo);
   return { type: ADD, payload: todo };
 };
 
