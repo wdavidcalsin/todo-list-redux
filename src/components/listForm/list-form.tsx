@@ -6,7 +6,9 @@ import { toast } from 'react-toastify';
 import { deleteAction, updateAction, updateCheckAction } from '../../actions/add.action';
 import { Button, FormStyle } from '../form/styles';
 
+
 const ListForm = ({ valItem }: any) => {
+
   const dispatch = useDispatch();
 
   const handleRemove = (id: any) => {
@@ -45,7 +47,9 @@ const ListForm = ({ valItem }: any) => {
         valueUpdate: '',
       }}
       onSubmit={(values) => {
+
         handleUpdate(values, valItem.id);
+
       }}
     >
       {({ handleSubmit, values }) => (
@@ -66,14 +70,18 @@ const ListForm = ({ valItem }: any) => {
           <Field
             name="valueUpdate"
             component="input"
+
             defaultValue={valItem.value}
           ></Field>
+
 
           <Button type="submit">Update</Button>
           <Button
             type="button"
             onClick={() => {
+
               handleRemove(valItem.id);
+
             }}
           >
             Remove

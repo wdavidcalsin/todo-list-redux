@@ -4,4 +4,8 @@ import logger from 'redux-logger';
 
 import { rootReducer } from './reducers';
 
-export let store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
+export let store = createStore(
+  rootReducer,
+  {},
+  composeWithDevTools(applyMiddleware(logger)),
+);
