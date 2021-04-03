@@ -44,7 +44,6 @@ const FormComponent = () => {
         if (!valItem.check) {
           return (
             <>
-              {JSON.stringify(valItem)}
               <ListForm valItem={valItem} key={key} />
             </>
           );

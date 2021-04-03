@@ -15,25 +15,20 @@ const ListForm = ({ valItem }: any) => {
   };
 
   const handleUpdate = (values: any, id: any) => {
-    console.log(values);
-
     const { valueUpdate, checkList } = values;
-    const check = checkList === 'true';
 
     toast.success('Se actualizo la Lista', { autoClose: 3000 });
-    dispatch(updateAction(id, valueUpdate, check));
+    dispatch(updateAction(id, valueUpdate, checkList));
   };
 
   const handleCheckbox = (v: any, id: string) => {
     if (v) {
-      console.log(v, id);
-
       toast('Lista Seleccionada', { autoClose: 2000 });
+
       setTimeout(() => dispatch(updateCheckAction(id, true)), 1000);
     } else {
-      console.log(v, id);
-
       toast.info('Lista Deseleccionada', { autoClose: 2000 });
+
       setTimeout(() => dispatch(updateCheckAction(id, false)), 1000);
     }
   };
@@ -56,6 +51,7 @@ const ListForm = ({ valItem }: any) => {
                 {...field}
                 type="checkbox"
                 className="input-check"
+                defaultChecked={valItem.check}
                 onClick={() => handleCheckbox(!values.checkList, valItem.id)}
               />
             )}

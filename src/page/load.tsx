@@ -4,6 +4,12 @@ import Empty from '../components/empty/empty';
 import Layout from '../components/layout/layout';
 import ListForm from '../components/listForm/list-form';
 
+interface IPropValue {
+  value: string;
+  id: string;
+  check: boolean;
+}
+
 const Load = ({ toggleTheme }: any) => {
   let countCheck = 0;
   const listData = useSelector((state: any) => state.add);
@@ -11,10 +17,10 @@ const Load = ({ toggleTheme }: any) => {
   return (
     <Layout toggleTheme={toggleTheme}>
       <>
-        {listData.map((itemData: any, key: any) => {
+        {listData.map((itemData: IPropValue, key: any) => {
           if (itemData.check === true) {
             countCheck++;
-            return <ListForm data={itemData} key={key} defaultCheck="true" />;
+            return <ListForm valItem={itemData} key={key} />;
           }
           return undefined;
         })}
