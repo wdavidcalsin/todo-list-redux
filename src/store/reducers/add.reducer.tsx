@@ -15,7 +15,7 @@ export const addReducers = (state = initState, action: any) => {
 
     case DELETE:
       let value = state.filter((val: any) => val.id !== action.payload);
-      return [...value];
+      return value;
 
     case UPDATE:
       const indexElement = state.findIndex((val) => val.id === action.payload);
@@ -27,7 +27,6 @@ export const addReducers = (state = initState, action: any) => {
         check: action.check,
       };
       state = newTodos;
-      console.log(state);
 
       return state;
 
@@ -40,7 +39,6 @@ export const addReducers = (state = initState, action: any) => {
         check: action.check,
       };
       state = newTodosCheck;
-      console.log(state);
 
       return state;
 
